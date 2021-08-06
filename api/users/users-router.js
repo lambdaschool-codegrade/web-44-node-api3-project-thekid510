@@ -35,7 +35,7 @@ router.post('/', validateUser,(req, res, next) => {
   .catch(next)
 });
 
-router.put('/:id',validateUserId, validateUser,(req, res) => {
+router.put('/:id',validateUserId, validateUser,(req, res,next) => {
   User.update(req.params.id, { name: req.name })
   .then(()=> {
     return User.getById(req.params.id)
@@ -47,7 +47,7 @@ router.put('/:id',validateUserId, validateUser,(req, res) => {
  
 });
 
-router.delete('/:id',validateUserId, async (req, res) => {
+router.delete('/:id',validateUserId, async (req, res, next) => {
   try{
    await User.remove(req.params.id)
   res.json(req.user)
@@ -56,7 +56,7 @@ router.delete('/:id',validateUserId, async (req, res) => {
   }
 });
 
-router.get('/:id/posts',validateUserId, async (req, res) => {
+router.get('/:id/posts',validateUserId, async (req, res, next) => {
   try{
     const result = await User.getUserPosts(req.params.id)
     res.json(result)

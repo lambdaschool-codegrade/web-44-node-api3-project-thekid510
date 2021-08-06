@@ -22,8 +22,7 @@ async function validateUserId(req, res, next) {
       message: ' problem finding user',
     })
   }
-  console.log('validateUserId middleware')
-  next()
+
 }
 
 function validateUser(req, res, next) {
